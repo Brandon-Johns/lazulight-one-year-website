@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'wouter'
-import classes from './SiteFooter.module.scss'
+import './SiteFooter.scss'
 
 const footerText = [
   'Some web team credit',
@@ -19,24 +19,10 @@ export default function SiteFooter (): JSX.Element {
   }, [location])
 
   const firstNameLower = firstName.toLowerCase().split('/')[1]
-  let footerBorder
-  switch (firstNameLower) {
-    case 'elira':
-      footerBorder = classes.eliraFooterBorder
-      break
-    case 'pomu':
-      footerBorder = classes.pomuFooterBorder
-      break
-    case 'finana':
-      footerBorder = classes.finanaFooterBorder
-      break
-    default:
-      footerBorder = classes.defaultFooterBorder // TODO: define default footer border colour
-  }
 
   return (
     <>
-      <footer className={[classes.footer, footerBorder].join(' ')}>
+      <footer className={`footer ${firstNameLower}-footer-border`}>
         {footerText.map((paragraph, index) =>
           // OK to use index as key as long as list is static
           <p key={index}>{paragraph}&nbsp;</p>
